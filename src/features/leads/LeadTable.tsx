@@ -1,9 +1,11 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { LeadRow, type Lead } from './LeadRow'
 import { LeadSearchBar } from './LeadSearchBar'
 import { LeadFilters } from './LeadFilters'
 import './LeadTable.css'
 import { useStore } from '../../store'
+import { useGetLeadsQuery } from '../../graphql/generated'
+import { client } from '../../graphql/client'
 
 interface Sort { key: keyof Lead; dir: 'asc' | 'desc' }
 
@@ -15,15 +17,9 @@ export function LeadTable() {
   const [sort, setSort] = useState<Sort>({ key: 'name', dir: 'asc' })
   const { selectLead } = useStore()
 
-  useEffect(() => {
-    fetch('/graphql', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query: 'query GetLeads { leads { id name status lastContact rep } }' }),
-    })
-      .then((r) => r.json())
-      .then((r) => setLeads(r.data.leads))
-  }, [])
+  useGetLeadsQuery(client, undefined, {
+    onSuccess: (data) => setLeads(data.leads),
+  })
 
   const statuses = useMemo(() => Array.from(new Set(leads.map((l) => l.status))), [leads])
   const reps = useMemo(() => Array.from(new Set(leads.map((l) => l.rep))), [leads])

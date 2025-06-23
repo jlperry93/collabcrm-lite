@@ -1,0 +1,6 @@
+mutation UpdateLeadStatus($id: ID!, $status: String!) {
+  updateLeadStatus(id: $id, status: $status) {
+    id
+    status
+  }
+}

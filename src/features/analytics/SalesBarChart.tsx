@@ -1,4 +1,4 @@
-import { BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts'
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
 
 interface DataPoint {
   date: string
@@ -7,11 +7,13 @@ interface DataPoint {
 
 export function SalesBarChart({ data }: { data: DataPoint[] }) {
   return (
-    <BarChart width={400} height={200} data={data} style={{ marginBottom: '2rem' }}>
-      <XAxis dataKey="date" />
-      <YAxis />
-      <Tooltip />
-      <Bar dataKey="contacted" fill="teal" />
-    </BarChart>
+    <ResponsiveContainer width="100%" height={250}>
+      <BarChart data={data}>
+        <XAxis dataKey="date" />
+        <YAxis />
+        <Tooltip />
+        <Bar dataKey="contacted" fill="#007bff" />
+      </BarChart>
+    </ResponsiveContainer>
   )
 }

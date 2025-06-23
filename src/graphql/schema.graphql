@@ -1,0 +1,23 @@
+"""
+GraphQL schema mirroring mocked API
+"""
+
+scalar DateTime
+
+"""Lead record"""
+type Lead {
+  id: ID!
+  name: String!
+  status: String!
+  lastContact: String!
+  rep: String!
+}
+
+type Query {
+  leads: [Lead!]!
+  lead(id: ID!): Lead
+}
+
+type Mutation {
+  updateLeadStatus(id: ID!, status: String!): Lead
+}

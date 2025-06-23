@@ -1,0 +1,9 @@
+query GetLeads {
+  leads {
+    id
+    name
+    status
+    lastContact
+    rep
+  }
+}

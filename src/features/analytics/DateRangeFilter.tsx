@@ -6,9 +6,9 @@ interface Props {
 
 export function DateRangeFilter({ start, end, onChange }: Props) {
   return (
-    <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem' }}>
+    <div className="date-range">
       <label>
-        From:
+        <span>From:</span>
         <input
           type="date"
           value={start}
@@ -16,7 +16,7 @@ export function DateRangeFilter({ start, end, onChange }: Props) {
         />
       </label>
       <label>
-        To:
+        <span>To:</span>
         <input
           type="date"
           value={end}

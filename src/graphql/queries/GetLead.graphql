@@ -1,0 +1,9 @@
+query GetLead($id: ID!) {
+  lead(id: $id) {
+    id
+    name
+    status
+    lastContact
+    rep
+  }
+}

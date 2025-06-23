@@ -3,6 +3,7 @@ import { analyticsData } from './data'
 import { SalesBarChart } from './SalesBarChart'
 import { StatusPieChart } from './StatusPieChart'
 import { DateRangeFilter } from './DateRangeFilter'
+import './AnalyticsDashboard.css'
 
 export function AnalyticsDashboard() {
   const [range, setRange] = useState({ start: '', end: '' })
@@ -34,15 +35,26 @@ export function AnalyticsDashboard() {
   }, [filtered])
 
   return (
-    <div>
-      <h2>Analytics Dashboard</h2>
-      <DateRangeFilter
-        start={range.start}
-        end={range.end}
-        onChange={setRange}
-      />
-      <SalesBarChart data={barData} />
-      <StatusPieChart data={pieData} />
+    <div className="dashboard-container">
+      <div className="dashboard-header">
+        <h1>Analytics Dashboard</h1>
+        <p>Track activity by date and lead status.</p>
+        <DateRangeFilter
+          start={range.start}
+          end={range.end}
+          onChange={setRange}
+        />
+      </div>
+      <div className="charts">
+        <section className="chart-section">
+          <h3>Daily Leads Contacted</h3>
+          <SalesBarChart data={barData} />
+        </section>
+        <section className="chart-section">
+          <h3>Lead Status Distribution</h3>
+          <StatusPieChart data={pieData} />
+        </section>
+      </div>
     </div>
   )
 }

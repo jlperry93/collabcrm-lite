@@ -17,6 +17,7 @@ export default function App() {
             { id: 'chat', label: 'Chat', icon: '💬' },
             { id: 'call', label: 'Call', icon: '📞' },
             { id: 'analytics', label: 'Analytics', icon: '📊' },
+            { id: 'components', label: 'Components', icon: '🧩' },
           ] as const
         ).map((t) => (
           <button
